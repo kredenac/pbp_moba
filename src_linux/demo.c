@@ -97,7 +97,10 @@ void print_result(MYSQL_RES *result, int mark_order)
         printf("%-13s|", "place");
     }
     while( NULL != (field = mysql_fetch_field(result))){
-        printf("%-13s|", field->name);
+        if (strcmp(field->name, "password"))
+            printf("%-13s|", field->name);
+        else
+            printf("%-32s|", field->name);
     }
     printf("\n");
     int num_fields = mysql_num_fields(result);
@@ -170,6 +173,15 @@ void delete_item(MYSQL *connection)
 {
     char query[QUERY_SIZE];
     char bufferName[BUFFER_SIZE];
+    MYSQL_RES *result;
+    
+
+    if (mysql_query (connection, "select * from Item") != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+    result = mysql_use_result (connection);
+    print_result(result, 0);
+    mysql_free_result (result);
     printf("Enter item name to be deleted:\n");
     scanf("%s", bufferName);
 
@@ -178,8 +190,12 @@ void delete_item(MYSQL *connection)
     if (mysql_query (connection, query) != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
     }
-
-    printf("Successfully deleted an item!\n");
+    if (mysql_affected_rows(connection) == 0 ){
+      printf("Wrong item name!\n");
+    } else {
+      printf("Successfully deleted an item!\n");
+    }
+    
 }
 
 void insert_new_item(MYSQL *connection)

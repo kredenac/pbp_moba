@@ -23,10 +23,10 @@ insert into Item(name, cost, health, defense, damage, mana, speed) values
     ('Arcane staff', 800, 10, 1, 60, 100, 0),
     ('Trinity force', 3600, 300, 0, 200, 200, 20),
     ('B.F. sword', 1650, 0, 0, 65, 0, 0),
-    ('Phantom dancer', 3100, 0, 100, 300, 0, 50),
+    ('Phantom', 3100, 0, 100, 300, 0, 50),
     ('Warmogs armor', 2900, 3000, 200, 10, 0, 0),
     ('Frozen hearth', 2200, 100, 300, 0, 500, 0),
-    ('Rejuvenation bead', 5000, 350, 450, 220, 700, 99),
+    ('Rej. bead', 5000, 350, 450, 220, 700, 99),
     ('Ludens echo', 3100, 0, 50, 150, 10, 15),
     ('Heart of gold', 850, 400, 10, 0, 0, 3)
 ;
