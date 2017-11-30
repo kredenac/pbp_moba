@@ -2,6 +2,23 @@
 
 ## Opis domena
 
+Nezavisni entiteti:
+- Player
+- Hero
+- Map
+- Item
+
+Zavisni Entiteti:
+- Skin
+
+Agregirani entiteti:
+- Shop
+- Match
+
+Trigeri:
+- Nakon završene partije se ažuriraju broj pobeda/izgubljenih, iskustvo, nivo, kao i rank svakog igrača.
+- Nakon unošenja nove mape, njenoj prodavnici se dodeljuju sve stvari koje su bile dostupne i u svim ostalim prodavnicama.
+
 ### Player
 Svaki igrač ima svoj nalog.
 - Level: trenutni nivo igrača
@@ -9,7 +26,6 @@ Svaki igrač ima svoj nalog.
 - Wins: koliko igrač ima pobeđenih partija
 - Losses: koliko ima izgubljenih partija
 - Rank: broj koji predstavlja relativnu veštinu igrača, poput Elo u šahu.
-
 
 ### Hero
 U igri postoji više različitih heroja, odnosno karaktetera kojima igrač može da upravlja.
@@ -26,7 +42,6 @@ Postoji više mapa na kojima mogu da se igraju partije. Mape imaju imena.
 - Starting_gold: koliko zlatnika ima svaki igrač na početku
 - Minimalno trajanje partije: nakon toga je moguće predati partiju
 - Pamti se i očekivano trajanje partije na toj mapi.
-- Can always buy: da li uvek može da se kupuje u prodavnici, ili samo na početku
 
 ### Item
 Kupovinom stvari heroj postaje jači.
@@ -43,6 +58,7 @@ Svaki heroj ima skinove, odnosno različite 3d modele. Jedan skin pripada samo j
 
 ### Shop
 Na svakoj mapi postoji prodavnica gde se mogu kupiti stvari (oklop, oružje), ali nisu sve stvari dostupne u svakoj prodavnici.
+Ako item može da se kupi, onda se pamti da li može na početku partije, ili tek posle.
 
 ### Match
 Odigrana partija.
