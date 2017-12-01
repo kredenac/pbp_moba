@@ -15,7 +15,7 @@ insert into hero(name, health, mana, damage, defense, speed, passive, spell1, sp
     ('Vladimir', 390, 0, 38, 33, 310, 'Bonus health gives damage', 'Transfusion', 'Immune', 'Charge damage', 'Plague')
 ;
 
-
+-- source C:/Users/Dzoni/Documents/GitHub/pbp_moba/src/create.sql
 
 insert into item(name, cost, health, defense, damage, mana, speed) values
     ('Arcane staff', 800, 10, 1, 60, 100, 0),
@@ -24,7 +24,9 @@ insert into item(name, cost, health, defense, damage, mana, speed) values
     ('Phantom dancer', 3100, 0, 100, 300, 0, 50),
     ('Warmogs armor', 2900, 3000, 200, 10, 0, 0),
     ('Frozen hearth', 2200, 100, 300, 0, 500, 0),
-    ('Rejuvenation bead', 5000, 350, 450, 220, 700, 99)
+    ('Rejuvenation bead', 5000, 350, 450, 220, 700, 99),
+    ('Ludens echo', 3100, 0, 50, 150, 10, 15),
+    ('Heart of gold', 850, 400, 10, 0, 0, 3)
 ;
 
 insert into skins(heroId, cost, name, is_on_sale) values
@@ -53,6 +55,30 @@ insert into skins(heroId, cost, name, is_on_sale) values
 
 insert into map(name, starting_gold, expected_game_length, min_game_length) values
     ('Summoners rift', 500, '00:35:00', '00:15:00'),
-    ('Howling Abyss', 700, '00:25:00', '00:12:00')
+    ('Howling Abyss', 700, '00:25:00', '00:12:00'),
     ('The Twisted Treeline', 1250, '0:20:00', '00:10:00')
 ;
+
+
+
+insert into player(name, level, experience, wins, losses, rank) values
+    ('Kredenac', 30, 0, 2200, 1800, 3400),
+    ('Vitrina', 30, 0, 2100, 1750, 3350),
+    ('Bosancheros', 29, 555, 600, 533, 2100),
+    ('Patuljak', 30, 0, 2000, 1900, 3900),
+    ('xXxKingxXx', 30, 0, 2000, 1900, 3900),
+
+    ('Baklja', 1, 150, 1, 0, 1260),
+    ('NoobPL', 25, 355, 30, 160, 350),
+    ('SavoNBGD', 15, 1050, 7, 13, 777),
+    ('SKT T1 Rex0x', 30, 9, 1599, 1359, 2700),
+    ('Sevajper', 30, 0, 1700, 1600, 2950),
+    ('Ticma', 30, 0, 910, 920, 1430)
+;
+insert into player(name) values
+    ('BojanV03')
+;
+
+insert into shop(map_id, item_id, can_buy_at_start)
+    select 1, id, 1
+    from item;
