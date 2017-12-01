@@ -17,10 +17,12 @@ Agregirani entiteti:
 
 Trigeri:
 - Nakon završene partije se ažuriraju broj pobeda/izgubljenih, iskustvo, nivo, kao i rank svakog igrača.
-- Nakon unošenja nove mape, njenoj prodavnici se dodeljuju sve stvari koje su bile dostupne i u svim ostalim prodavnicama.
+- Pri pravljenju novog naloga igrača, njegova lozinka se hešira. Takođe i kada je ažurira.
 
 ### Player
 Svaki igrač ima svoj nalog.
+- Name: nadimak igrača u igri
+- Password: heširana lozinka
 - Level: trenutni nivo igrača
 - Experience: deo progresa ka sledećem nivou
 - Wins: koliko igrač ima pobeđenih partija
@@ -38,7 +40,8 @@ U igri postoji više različitih heroja, odnosno karaktetera kojima igrač može
 - Passive, Spell1, Spell2, Spell3, Spell4: opisi četiri aktivna napada, i jednog pasivnog.
 
 ### Map
-Postoji više mapa na kojima mogu da se igraju partije. Mape imaju imena.
+Postoji više mapa na kojima mogu da se igraju partije.
+- Mape imaju ime
 - Starting_gold: koliko zlatnika ima svaki igrač na početku
 - Minimalno trajanje partije: nakon toga je moguće predati partiju
 - Pamti se i očekivano trajanje partije na toj mapi.
