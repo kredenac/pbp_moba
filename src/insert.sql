@@ -67,7 +67,6 @@ insert into player(name, level, experience, wins, losses, rank) values
     ('Bosancheros', 29, 555, 600, 533, 2100),
     ('Patuljak', 30, 0, 2000, 1900, 3900),
     ('xXxKingxXx', 30, 0, 2000, 1900, 3900),
-
     ('Baklja', 1, 150, 1, 0, 1260),
     ('NoobPL', 25, 355, 30, 160, 350),
     ('SavoNBGD', 15, 1050, 7, 13, 777),
@@ -82,3 +81,9 @@ insert into player(name) values
 insert into shop(map_id, item_id, can_buy_at_start)
     select 1, id, 1
     from item;
+
+insert into `match`(first_five_won, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10) values
+     (1, 1,2,3,4,5,6,7,8,9,10),
+     (0, 1,2,3,4,5,6,7,8,9,10),
+     (1, 1,12,3,4,5,6,7,8,9,11)
+;

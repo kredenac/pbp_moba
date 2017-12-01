@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Player` (
   `wins` INT UNSIGNED NOT NULL DEFAULT 0,
   `losses` INT UNSIGNED NOT NULL DEFAULT 0,
   `rank` INT UNSIGNED NOT NULL DEFAULT 1200,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -38,7 +39,8 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Map` (
   `starting_gold` INT NOT NULL,
   `expected_game_length` TIME(0) NOT NULL,
   `min_game_length` TIME(0) NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -54,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Item` (
   `damage` INT NOT NULL DEFAULT 0,
   `mana` INT NOT NULL DEFAULT 0,
   `speed` FLOAT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -74,7 +77,8 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Hero` (
   `spell2` VARCHAR(255) NOT NULL DEFAULT 'none',
   `spell3` VARCHAR(255) NOT NULL DEFAULT 'none',
   `spell4` VARCHAR(255) NOT NULL DEFAULT 'none',
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -146,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Match` (
   `hero7` INT NOT NULL DEFAULT 1,
   `hero8` INT NOT NULL DEFAULT 1,
   `hero9` INT NOT NULL DEFAULT 1,
-  `hero10` INT NOT NULL,
+  `hero10` INT NOT NULL DEFAULT 1,
   INDEX `fk_Player_has_Map1_Map1_idx` (`Map_id` ASC),
   PRIMARY KEY (`id`),
   INDEX `fk_Match_Player1_idx` (`player1` ASC),
