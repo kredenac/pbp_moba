@@ -82,7 +82,8 @@ insert into shop(map_id, item_id, can_buy_at_start)
     select 1, id, 1
     from item;
 
-insert into `match`(first_five_won, player1, player2, player3, player4, player5, player6, player7, player8, player9, player10) values
+insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3, team1_player4, team1_player5,
+    team2_player1, team2_player2, team2_player3, team2_player4, team2_player5) values
      (1, 1,2,3,4,5,6,7,8,9,10),
      (0, 1,2,3,4,5,6,7,8,9,10),
      (1, 1,12,3,4,5,6,7,8,9,11)

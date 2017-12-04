@@ -131,151 +131,151 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Match` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `length` TIME(0) NOT NULL DEFAULT '00:30:00',
   `Map_id` INT NOT NULL DEFAULT 1,
-  `first_five_won` TINYINT NOT NULL,
-  `player1` INT NOT NULL,
-  `player2` INT NOT NULL,
-  `player3` INT NOT NULL,
-  `player4` INT NOT NULL,
-  `player5` INT NOT NULL,
-  `player6` INT NOT NULL,
-  `player7` INT NOT NULL,
-  `player8` INT NOT NULL,
-  `player9` INT NOT NULL,
-  `player10` INT NOT NULL,
-  `hero1` INT NOT NULL DEFAULT 1,
-  `hero2` INT NOT NULL DEFAULT 1,
-  `hero3` INT NOT NULL DEFAULT 1,
-  `hero4` INT NOT NULL DEFAULT 1,
-  `hero5` INT NOT NULL DEFAULT 1,
-  `hero6` INT NOT NULL DEFAULT 1,
-  `hero7` INT NOT NULL DEFAULT 1,
-  `hero8` INT NOT NULL DEFAULT 1,
-  `hero9` INT NOT NULL DEFAULT 1,
-  `hero10` INT NOT NULL DEFAULT 1,
+  `first_team_won` TINYINT NOT NULL,
+  `team1_player1` INT NOT NULL,
+  `team1_player2` INT NOT NULL,
+  `team1_player3` INT NOT NULL,
+  `team1_player4` INT NOT NULL,
+  `team1_player5` INT NOT NULL,
+  `team2_player1` INT NOT NULL,
+  `team2_player2` INT NOT NULL,
+  `team2_player3` INT NOT NULL,
+  `team2_player4` INT NOT NULL,
+  `team2_player5` INT NOT NULL,
+  `team1_hero1` INT NOT NULL DEFAULT 1,
+  `team1_hero2` INT NOT NULL DEFAULT 1,
+  `team1_hero3` INT NOT NULL DEFAULT 1,
+  `team1_hero4` INT NOT NULL DEFAULT 1,
+  `team1_hero5` INT NOT NULL DEFAULT 1,
+  `team2_hero1` INT NOT NULL DEFAULT 1,
+  `team2_hero2` INT NOT NULL DEFAULT 1,
+  `team2_hero3` INT NOT NULL DEFAULT 1,
+  `team2_hero4` INT NOT NULL DEFAULT 1,
+  `team2_hero5` INT NOT NULL DEFAULT 1,
   INDEX `fk_Player_has_Map1_Map1_idx` (`Map_id` ASC),
   PRIMARY KEY (`id`),
-  INDEX `fk_Match_Player1_idx` (`player1` ASC),
-  INDEX `player2_idx` (`player2` ASC),
-  INDEX `player5_idx` (`player5` ASC),
-  INDEX `player4_idx` (`player4` ASC),
-  INDEX `player3_idx` (`player3` ASC),
-  INDEX `player6_idx` (`player6` ASC),
-  INDEX `player7_idx` (`player7` ASC),
-  INDEX `player8_idx` (`player8` ASC),
-  INDEX `player9_idx` (`player9` ASC),
-  INDEX `player10_idx` (`player10` ASC),
-  INDEX `hero1_idx` (`hero1` ASC),
-  INDEX `hero2_idx` (`hero2` ASC),
-  INDEX `hero3_idx` (`hero3` ASC),
-  INDEX `hero4_idx` (`hero4` ASC),
-  INDEX `hero5_idx` (`hero5` ASC),
-  INDEX `hero6_idx` (`hero6` ASC),
-  INDEX `hero7_idx` (`hero7` ASC),
-  INDEX `hero8_idx` (`hero8` ASC),
-  INDEX `hero9_idx` (`hero9` ASC),
-  INDEX `hero10_idx` (`hero10` ASC),
+  INDEX `fk_Match_Player1_idx` (`team1_player1` ASC),
+  INDEX `player2_idx` (`team1_player2` ASC),
+  INDEX `player5_idx` (`team1_player5` ASC),
+  INDEX `player4_idx` (`team1_player4` ASC),
+  INDEX `player3_idx` (`team1_player3` ASC),
+  INDEX `player6_idx` (`team2_player1` ASC),
+  INDEX `player7_idx` (`team2_player2` ASC),
+  INDEX `player8_idx` (`team2_player3` ASC),
+  INDEX `player9_idx` (`team2_player4` ASC),
+  INDEX `player10_idx` (`team2_player5` ASC),
+  INDEX `hero1_idx` (`team1_hero1` ASC),
+  INDEX `hero2_idx` (`team1_hero2` ASC),
+  INDEX `hero3_idx` (`team1_hero3` ASC),
+  INDEX `hero4_idx` (`team1_hero4` ASC),
+  INDEX `hero5_idx` (`team1_hero5` ASC),
+  INDEX `hero6_idx` (`team2_hero1` ASC),
+  INDEX `hero7_idx` (`team2_hero2` ASC),
+  INDEX `hero8_idx` (`team2_hero3` ASC),
+  INDEX `hero9_idx` (`team2_hero4` ASC),
+  INDEX `hero10_idx` (`team2_hero5` ASC),
   CONSTRAINT `mapId`
     FOREIGN KEY (`Map_id`)
     REFERENCES `Moba`.`Map` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player1`
-    FOREIGN KEY (`player1`)
+    FOREIGN KEY (`team1_player1`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player2`
-    FOREIGN KEY (`player2`)
+    FOREIGN KEY (`team1_player2`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player3`
-    FOREIGN KEY (`player3`)
+    FOREIGN KEY (`team1_player3`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player4`
-    FOREIGN KEY (`player4`)
+    FOREIGN KEY (`team1_player4`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player5`
-    FOREIGN KEY (`player5`)
+    FOREIGN KEY (`team1_player5`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player6`
-    FOREIGN KEY (`player6`)
+    FOREIGN KEY (`team2_player1`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player7`
-    FOREIGN KEY (`player7`)
+    FOREIGN KEY (`team2_player2`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player8`
-    FOREIGN KEY (`player8`)
+    FOREIGN KEY (`team2_player3`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player9`
-    FOREIGN KEY (`player9`)
+    FOREIGN KEY (`team2_player4`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `player10`
-    FOREIGN KEY (`player10`)
+    FOREIGN KEY (`team2_player5`)
     REFERENCES `Moba`.`Player` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero1`
-    FOREIGN KEY (`hero1`)
+    FOREIGN KEY (`team1_hero1`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero2`
-    FOREIGN KEY (`hero2`)
+    FOREIGN KEY (`team1_hero2`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero3`
-    FOREIGN KEY (`hero3`)
+    FOREIGN KEY (`team1_hero3`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero4`
-    FOREIGN KEY (`hero4`)
+    FOREIGN KEY (`team1_hero4`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero5`
-    FOREIGN KEY (`hero5`)
+    FOREIGN KEY (`team1_hero5`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero6`
-    FOREIGN KEY (`hero6`)
+    FOREIGN KEY (`team2_hero1`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero7`
-    FOREIGN KEY (`hero7`)
+    FOREIGN KEY (`team2_hero2`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero8`
-    FOREIGN KEY (`hero8`)
+    FOREIGN KEY (`team2_hero3`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero9`
-    FOREIGN KEY (`hero9`)
+    FOREIGN KEY (`team2_hero4`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `hero10`
-    FOREIGN KEY (`hero10`)
+    FOREIGN KEY (`team2_hero5`)
     REFERENCES `Moba`.`Hero` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

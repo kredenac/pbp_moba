@@ -19,6 +19,12 @@ Trigeri:
 - Nakon završene partije se ažuriraju broj pobeda/izgubljenih, iskustvo, nivo, kao i rank svakog igrača.
 - Pri pravljenju novog naloga igrača, njegova lozinka se hešira. Takođe i kada je ažurira.
 
+
+Baza se koristi:
+- Pre partije - za pregled informacija igrača i istoriju odigranih partija.
+- Prilikom učitavanja partije - na osnovu podataka iz baze se inicijalizuje igra.
+- Nakon partije - ažuriranje igrača, i pamćenje glavnih podataka partije.
+- Baza se ne ažurira tokom trajanja partije.
 ### Player
 Svaki igrač ima svoj nalog.
 - Name: nadimak igrača u igri
@@ -64,9 +70,9 @@ Na svakoj mapi postoji prodavnica gde se mogu kupiti stvari (oklop, oružje), al
 Ako item može da se kupi, onda se pamti da li može na početku partije, ili tek posle.
 
 ### Match
-Odigrana partija.
+Pamte se odigrane partije, glavna svrha je pregled istorije - ko je učestvovao u partiji, i kog heroja je izabrao.
 U jednoj partiji učestvuje 10 igrača. Igraju dva tima jedni protiv drugih, 5 na 5.
 Pre svake partije igrač bira tačno jednog heroja koga će igrati u toj partiji.
 - Length: vreme trajanja partije
-- First_five_won: rezultat partije
+- First_team_won: rezultat partije - da li je pobedio prvi tim, ili drugi
 - Sadrži id 10 igrača koji su učestvovali, id 10 heroja koje su izabrali, kao i id mape
