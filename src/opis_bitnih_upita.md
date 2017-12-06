@@ -1,0 +1,6 @@
+- dodavanje novih itema
+- pregled liste igrača po rangu
+- menjanje lozinke igrča
+- brisanje određenog itema
+- ažuriranje svih igrača koji su učestvovali u partiji
+- pregled istorije partija izabranog igrača
