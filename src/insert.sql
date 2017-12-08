@@ -84,7 +84,7 @@ insert into shop(map_id, item_id, can_buy_at_start)
 
 insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3, team1_player4, team1_player5,
     team2_player1, team2_player2, team2_player3, team2_player4, team2_player5) values
-     (1, 1,2,3,4,5,6,7,8,9,10),
+     (1, 1,3,5,2,5,7,10,9,8,6),
      (1, 1,2,3,4,5,6,7,8,9,10),
      (0, 1,12,3,4,5,6,7,8,9,11),
      (0, 10,12,9,7,8,2,1,4,5,3)

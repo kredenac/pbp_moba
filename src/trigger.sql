@@ -46,7 +46,7 @@ drop trigger if exists hash_password_update$$
 
 create trigger hash_password_update before update on player
 for each row begin
-    if (MD5(new.password) <> old.password) then
+    if (new.password <> old.password) then
         set new.password = MD5(new.password);
     end if;
 end$$

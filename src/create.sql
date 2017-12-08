@@ -282,6 +282,28 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Match` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `Moba`.`Friendship`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Moba`.`Friendship` (
+  `player1` INT NOT NULL,
+  `player2` INT NOT NULL,
+  `note1` VARCHAR(45) NOT NULL,
+  `note2` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`player1`, `player2`),
+  CONSTRAINT `fk_Player_has_Player_Player1`
+    FOREIGN KEY (`player2`)
+    REFERENCES `Moba`.`Player` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Player_has_Player_Player2`
+    FOREIGN KEY (`player1`)
+    REFERENCES `Moba`.`Player` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
