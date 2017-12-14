@@ -89,3 +89,6 @@ insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3,
      (0, 1,12,3,4,5,6,7,8,9,11),
      (0, 10,12,9,7,8,2,1,4,5,3)
 ;
+
+insert into friendship(player1, player2, note1, note2) values
+    (1, 2, 'Pro', 'Noob'),

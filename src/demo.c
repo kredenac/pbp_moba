@@ -1,4 +1,5 @@
 #include "demo.h"
+#include "time.h"
 //TAKO GA COMPILE
 //gcc 1.c -lmysqlclient
 //gcc 1.c -lmysqlclient
@@ -15,11 +16,14 @@ void see_match_history(MYSQL *connection);
 void view_leaderboards(MYSQL *connection);
 void print_result(MYSQL_RES *result, int mark_order);
 void select_all_from_player(MYSQL *connection);
+void insert_new_match(MYSQL *connection);
+void shuffle(int *array, size_t n);
+void delete_item(MYSQL *connection);
+void insert_new_item(MYSQL *connection);
 
 int main (int argc, char **argv)
 {
     MYSQL *connection;	/* Promenljiva za konekciju. */
-    // char buffer[BUFFER_SIZE];
     /* Incijalizuje se promenljiva koja ce prowstavljati konekciju. */
     connection = mysql_init (NULL);
     if (connection == NULL){
@@ -31,6 +35,7 @@ int main (int argc, char **argv)
         0, NULL,0) == NULL){
         error_fatal ("Greska u konekciji. %s\n", mysql_error (connection));
     }
+    srand(time(NULL));
     int option;
     int running = 1;
     while(running){
@@ -39,6 +44,9 @@ int main (int argc, char **argv)
         printf("2. View all players\n");
         printf("3. See match history of a player\n");
         printf("4. View Leaderboards\n");
+        printf("5. Delete item\n");
+        printf("6. Insert new item\n");
+        printf("7. Insert a new match\n");
         printf("0. Quit\n");
         scanf("%d", &option);
         switch (option) {
@@ -55,6 +63,13 @@ int main (int argc, char **argv)
                 view_leaderboards(connection);
                 break;
             case 5:
+                delete_item(connection);
+                break;
+            case 6:
+                insert_new_item(connection);
+                break;
+            case 7:
+                insert_new_match(connection);
                 break;
             case 0:
                 running = 0;
@@ -64,10 +79,7 @@ int main (int argc, char **argv)
                 break;
         }
     }
-    /* Zatvara se connection. */
     mysql_close (connection);
-
-    /* Zavrsava se program */
     exit(EXIT_SUCCESS);
 }
 
@@ -92,8 +104,7 @@ void print_result(MYSQL_RES *result, int mark_order)
     int num_fields = mysql_num_fields(result);
 
     int i=0;
-    while ((row = mysql_fetch_row(result)) ){
-        // unsigned long *lengths = mysql_fetch_lengths(result);
+    while (row){
         if (mark_order){
             printf("%-13d|", ++i);
         }
@@ -101,6 +112,7 @@ void print_result(MYSQL_RES *result, int mark_order)
             printf ("%-13s|", row[i] ? row[i] : "NULL");
         }
         printf ("\n");
+        row = mysql_fetch_row(result);
     }
 
     printf ("\n");
@@ -137,15 +149,12 @@ void see_match_history(MYSQL *connection)
     }
     result = mysql_use_result (connection);
 
-    // int num_fields = mysql_num_fields(result);
     row = mysql_fetch_row(result);
     if (row == 0){
         printf("Wrong username\n");
         return;
     }
     printf("id = '%s'\n", row[0]);
-
-    //int player_id = atoi(row[i]);
 
     sprintf (query, match_history_query, row[0], row[0]);
     mysql_free_result (result);
@@ -156,7 +165,118 @@ void see_match_history(MYSQL *connection)
     result = mysql_use_result (connection);
     print_result(result, 0);
     mysql_free_result (result);
-    // printf("kraj match history\n");
+}
+
+void delete_item(MYSQL *connection)
+{
+    char query[QUERY_SIZE];
+    char bufferName[BUFFER_SIZE];
+    printf("Enter item name to be deleted:\n");
+    scanf("%s", bufferName);
+
+    sprintf (query, delete_item_query, bufferName);
+
+    if (mysql_query (connection, query) != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+
+    printf("Successfully deleted an item!\n");
+}
+
+void insert_new_item(MYSQL *connection)
+{
+    char query[QUERY_SIZE];
+    char bufferName[BUFFER_SIZE];
+    printf("Inserting a new item:\n");
+    printf("Enter item name:\n");
+    scanf("%s", bufferName);
+    printf("Enter item cost:\n");
+    int cost;
+    scanf("%d", &cost);
+    printf("Enter item health:\n");
+    int health;
+    scanf("%d", &health);
+    printf("Enter item defense:\n");
+    int defense;
+    scanf("%d", &defense);
+    printf("Enter item damage:\n");
+    int damage;
+    scanf("%d", &damage);
+    printf("Enter item mana:\n");
+    int mana;
+    scanf("%d", &mana);
+    printf("Enter item speed:\n");
+    int speed;
+    scanf("%d", &speed);
+
+    sprintf (query, insert_item_query, bufferName, cost, health, defense,
+        damage, mana, speed);
+
+    if (mysql_query (connection, query) != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+
+    printf("Successfully entered a new item!\n");
+}
+
+void insert_new_match(MYSQL *connection)
+{
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    // MYSQL_FIELD *field;
+    char query[QUERY_SIZE];
+    char bufferName[BUFFER_SIZE];
+    printf("Simulating a random match:\n");
+    printf("Enter your account name\n");
+    scanf("%s", bufferName);
+
+    sprintf (query, "select id from player where name = '%s'", bufferName);
+
+    if (mysql_query (connection, query) != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+    result = mysql_use_result (connection);
+
+    row = mysql_fetch_row(result);
+    if (row == 0){
+        printf("Wrong username\n");
+        return;
+    }
+    int id = atoi(row[0]);
+
+    mysql_free_result (result);
+    if (mysql_query (connection, "select count(*) from player") != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+    result = mysql_use_result (connection);
+    row = mysql_fetch_row(result);
+    int n = atoi(row[0]);
+    mysql_free_result (result);
+    int *players = malloc(sizeof(int) * n);
+    for (int i=0; i<n; i++){
+        players[i] = i + 1;
+    }
+    shuffle(players, n);
+    // Zelim da izaberem 9  igraca pored unesenog.
+    // promesam niz njih i uzimam prvih 9, i gledam da to ne bude uneseni igrac.
+    for (int i=0; i<9; i++){
+        if (players[i] == id){
+            players[i] = players[n-1];
+            break;
+        }
+    }
+
+    int winner = rand() % 2;
+    sprintf(query, insert_match_query, winner, id, players[0], players[1], players[2],
+         players[3], players[4], players[5], players[6], players[7], players[8]);
+    if (mysql_query (connection, query) != 0){
+        error_fatal ("Error in query %s\n", mysql_error (connection));
+    }
+    if (winner){
+        printf("Victory! :D\n");
+    } else {
+        printf("Defeat :( \n)");
+    }
 }
 
 void change_password(MYSQL *connection)
@@ -215,7 +335,6 @@ void select_all_from_player(MYSQL *connection)
 {
     MYSQL_RES *result;
     char query[QUERY_SIZE];
-    /* Formulise se upit kojim se pronalaze sve sifre profila. */
     sprintf (query, "select * from player");
 
     /* Pokusava se sa izvrsavanjem upita. */
@@ -227,6 +346,22 @@ void select_all_from_player(MYSQL *connection)
     print_result(result, 0);
     mysql_free_result (result);
 }
+
+void shuffle(int *array, size_t n)
+{
+    if (n > 1)
+    {
+        size_t i;
+        for (i = 0; i < n - 1; i++)
+        {
+          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
+          int t = array[j];
+          array[j] = array[i];
+          array[i] = t;
+        }
+    }
+}
+
 
 static void error_fatal (char *format, ...)
 {

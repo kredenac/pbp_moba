@@ -27,3 +27,16 @@ const char * match_history_query =
 " team2_player1, team2_player2, team2_player3, team2_player4, team2_player5)"
 " and p1.id = team1_player1 and p2.id = team1_player2 and p3.id =  team1_player3 and p4.id = team1_player4 and p5.id = team1_player5 and"
 " p6.id = team2_player1 and p7.id = team2_player2 and p8.id =  team2_player3 and p9.id =  team2_player4 and p10.id = team2_player5";
+
+const char * insert_match_query =
+"insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3,"
+     " team1_player4, team1_player5,"
+    " team2_player1, team2_player2, team2_player3, team2_player4, team2_player5) values"
+    " (%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d)";
+
+const char * insert_item_query =
+"insert into item(name, cost, health, defense, damage, mana, speed) values"
+" ('%s', %d, %d, %d, %d, %d, %d)";
+
+const char * delete_item_query =
+"delete from item where name like '%s'";
