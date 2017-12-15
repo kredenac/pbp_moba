@@ -1,3 +1,5 @@
+USE `Moba` ;
+
 insert into hero(name, health, mana, damage, defense, speed, passive, spell1, spell2, spell3, spell4) values
     ('Garen', 500, 0, 67, 30, 345, 'Healing', 'Silence and speed', 'Defense boost', 'Spin', 'Finisher'),
     ('Kassadin', 350, 200, 20, 20, 315, 'Mana bonus', 'Silence and damage', 'Mana restore', 'Slow', 'Teleport'),
@@ -92,3 +94,6 @@ insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3,
 
 insert into friendship(player1, player2, note1, note2) values
     (1, 2, 'Pro', 'Noob'),
+    (2, 3, 'Gotivan', 'Smarac'),
+    (1, 10, 'Support', 'Top'),
+    (3, 10, 'Nema pojma', 'Top');

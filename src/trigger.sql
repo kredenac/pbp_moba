@@ -1,3 +1,5 @@
+USE `Moba` ;
+
 delimiter $$
 
 drop procedure if exists update_player_elo_and_games$$
@@ -51,6 +53,44 @@ for each row begin
     end if;
 end$$
 
+drop trigger if exists friendship_order_insert$$
+
+create trigger friendship_order_insert before insert on friendship
+for each row begin
+    declare tmp int;
+    declare  tmpNote varchar(200);
+    if (new.player1 = new.player2) then
+        signal sqlstate '45000' set message_text = 'Cant be a friend with self';
+    end if;
+
+    if (new.player1 < new.player2) then
+        set tmp = new.player1;
+        set tmpNote = new.note1;
+        set new.note1 = new.note2;
+        set new.note2 = tmpNote;
+        set new.player1 = new.player2;
+        set new.player2 = tmp;
+    end if;
+end$$
+
+drop trigger if exists friendship_order_update$$
+
+create trigger friendship_order_update before update on friendship
+for each row begin
+    declare tmp int;
+    declare  tmpNote varchar(200);
+    if (new.player1 = new.player2) then
+        signal sqlstate '45000' set message_text = 'Cant be a friend with self';
+    end if;
+    if (new.player1 < new.player2) then
+        set tmp = new.player1;
+        set tmpNote = new.note1;
+        set new.note1 = new.note2;
+        set new.note2 = tmpNote;
+        set new.player1 = new.player2;
+        set new.player2 = new.player1;
+    end if;
+end$$
 
 drop trigger if exists match_ended$$
 
