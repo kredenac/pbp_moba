@@ -8,6 +8,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema Moba
 -- -----------------------------------------------------
 
+drop schema if exists `Moba`;
 -- -----------------------------------------------------
 -- Schema Moba
 -- -----------------------------------------------------
@@ -25,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `Moba`.`Player` (
   `wins` INT UNSIGNED NOT NULL DEFAULT 0,
   `losses` INT UNSIGNED NOT NULL DEFAULT 0,
   `rank` INT UNSIGNED NOT NULL DEFAULT 1200,
-  `password` VARCHAR(32) NOT NULL DEFAULT '098f6bcd4621d373cade4e832627b4f6',
+  `password` VARCHAR(32) NOT NULL DEFAULT 'test',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;

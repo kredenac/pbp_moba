@@ -1,6 +1,6 @@
 USE `Moba` ;
 
-insert into hero(name, health, mana, damage, defense, speed, passive, spell1, spell2, spell3, spell4) values
+insert into Hero(name, health, mana, damage, defense, speed, passive, spell1, spell2, spell3, spell4) values
     ('Garen', 500, 0, 67, 30, 345, 'Healing', 'Silence and speed', 'Defense boost', 'Spin', 'Finisher'),
     ('Kassadin', 350, 200, 20, 20, 315, 'Mana bonus', 'Silence and damage', 'Mana restore', 'Slow', 'Teleport'),
     ('Soraka', 300, 200, 15, 19, 320, 'Bonus heal', 'Heal target', 'Slow area', 'Silence area', 'Heal everyone'),
@@ -19,7 +19,7 @@ insert into hero(name, health, mana, damage, defense, speed, passive, spell1, sp
 
 -- source C:/Users/Dzoni/Documents/GitHub/pbp_moba/src/create.sql
 
-insert into item(name, cost, health, defense, damage, mana, speed) values
+insert into Item(name, cost, health, defense, damage, mana, speed) values
     ('Arcane staff', 800, 10, 1, 60, 100, 0),
     ('Trinity force', 3600, 300, 0, 200, 200, 20),
     ('B.F. sword', 1650, 0, 0, 65, 0, 0),
@@ -31,7 +31,7 @@ insert into item(name, cost, health, defense, damage, mana, speed) values
     ('Heart of gold', 850, 400, 10, 0, 0, 3)
 ;
 
-insert into skins(heroId, cost, name, is_on_sale) values
+insert into Skins(heroId, cost, name, is_on_sale) values
     (1, 350, 'Juggernaut', 0),
     (2, 0, 'Default', 0),
     (3, 0, 'Default', 0),
@@ -55,7 +55,7 @@ insert into skins(heroId, cost, name, is_on_sale) values
     (13, 3600, 'Pulsfire', 0)
 ;
 
-insert into map(name, starting_gold, expected_game_length, min_game_length) values
+insert into Map(name, starting_gold, expected_game_length, min_game_length) values
     ('Summoners rift', 500, '00:35:00', '00:15:00'),
     ('Howling Abyss', 700, '00:25:00', '00:12:00'),
     ('The Twisted Treeline', 1250, '0:20:00', '00:10:00')
@@ -63,7 +63,7 @@ insert into map(name, starting_gold, expected_game_length, min_game_length) valu
 
 
 
-insert into player(name, level, experience, wins, losses, rank) values
+insert into Player(name, level, experience, wins, losses, rank) values
     ('Kredenac', 30, 0, 2200, 1800, 3400),
     ('Vitrina', 30, 0, 2100, 1750, 3350),
     ('Bosancheros', 29, 555, 600, 533, 2100),
@@ -76,15 +76,15 @@ insert into player(name, level, experience, wins, losses, rank) values
     ('Sevajper', 30, 0, 1700, 1600, 2950),
     ('Ticma', 30, 0, 910, 920, 1430)
 ;
-insert into player(name) values
+insert into Player(name) values
     ('BojanV03')
 ;
 
-insert into shop(map_id, item_id, can_buy_at_start)
+insert into Shop(map_id, item_id, can_buy_at_start)
     select 1, id, 1
-    from item;
+    from Item;
 
-insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3, team1_player4, team1_player5,
+insert into `Match`(first_team_won, team1_player1, team1_player2, team1_player3, team1_player4, team1_player5,
     team2_player1, team2_player2, team2_player3, team2_player4, team2_player5) values
      (1, 1,3,5,2,5,7,10,9,8,6),
      (1, 1,2,3,4,5,6,7,8,9,10),
@@ -92,7 +92,7 @@ insert into `match`(first_team_won, team1_player1, team1_player2, team1_player3,
      (0, 10,12,9,7,8,2,1,4,5,3)
 ;
 
-insert into friendship(player1, player2, note1, note2) values
+insert into Friendship(player1, player2, note1, note2) values
     (1, 2, 'Pro', 'Noob'),
     (2, 3, 'Gotivan', 'Smarac'),
     (1, 10, 'Support', 'Top'),

@@ -30,7 +30,7 @@ int main (int argc, char **argv)
       error_fatal ("Connection error. %s\n", mysql_error (connection));
     }
     /* Pokusava se sa konektovanjem na bazu. */
-    if (mysql_real_connect(connection, "localhost", "root", "", "moba",
+    if (mysql_real_connect(connection, "localhost", "root", "", "Moba",
         0, NULL, 0) == NULL){
         error_fatal ("Connection error. %s\n", mysql_error (connection));
     }
@@ -141,7 +141,7 @@ void see_match_history(MYSQL *connection)
     printf("Enter your account name\n");
     scanf("%s", bufferName);
 
-    sprintf (query, "select id from player where name = '%s'", bufferName);
+    sprintf (query, "select id from Player where name = '%s'", bufferName);
 
     if (mysql_query (connection, query) != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
@@ -229,7 +229,7 @@ void insert_new_match(MYSQL *connection)
     printf("Enter your account name\n");
     scanf("%s", bufferName);
 
-    sprintf (query, "select id from player where name = '%s'", bufferName);
+    sprintf (query, "select id from Player where name = '%s'", bufferName);
 
     if (mysql_query (connection, query) != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
@@ -244,7 +244,7 @@ void insert_new_match(MYSQL *connection)
     int id = atoi(row[0]);
 
     mysql_free_result (result);
-    if (mysql_query (connection, "select count(*) from player") != 0){
+    if (mysql_query (connection, "select count(*) from Player") != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
     }
     result = mysql_use_result (connection);
@@ -269,7 +269,7 @@ void insert_new_match(MYSQL *connection)
     sprintf(query, insert_match_query, winner, id, players[0], players[1], players[2],
          players[3], players[4], players[5], players[6], players[7], players[8]);
     if (mysql_query (connection, query) != 0){
-        error_fatal ("Error in query %s\n", mysql_error (connection));
+        error_fatal ("Error in query 3 %s\n", mysql_error (connection));
     }
     if (winner){
         printf("Victory! :D\n");
@@ -292,7 +292,7 @@ void change_password(MYSQL *connection)
     printf("Enter your old password\n");
     scanf("%s", bufferPass);
 
-    sprintf (query, "select * from player where name = '%s' and password = MD5('%s')", bufferName, bufferPass);
+    sprintf (query, "select * from Player where name = '%s' and password = MD5('%s')", bufferName, bufferPass);
 
     if (mysql_query (connection, query) != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
@@ -318,7 +318,7 @@ void change_password(MYSQL *connection)
     scanf("%s", bufferPass);
     mysql_free_result (result);
 
-    sprintf(query, "update player set password = '%s' where name = '%s'", bufferPass, bufferName);
+    sprintf(query, "update Player set password = '%s' where name = '%s'", bufferPass, bufferName);
     if (mysql_query (connection, query) != 0){
         error_fatal ("Error in query %s\n", mysql_error (connection));
     }
@@ -334,7 +334,7 @@ void select_all_from_player(MYSQL *connection)
 {
     MYSQL_RES *result;
     char query[QUERY_SIZE];
-    sprintf (query, "select * from player");
+    sprintf (query, "select * from Player");
 
     /* Pokusava se sa izvrsavanjem upita. */
     if (mysql_query (connection, query) != 0)

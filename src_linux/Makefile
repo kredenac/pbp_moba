@@ -7,7 +7,7 @@ DEPS	=			\
 		demo.h	
 
 OBJ		=			\
-		moba.o
+		demo.o
 
 VPATH	= src
 
@@ -17,13 +17,13 @@ VPATH	= src
 all: create triggers insert $(PROGRAM)
 
 create:
-	mysql -u root --password= -D mysql <src/create.sql
+	mysql -u root --password= -D mysql <create.sql
 
 triggers:
-	mysql -u root --password= -D mysql <src/trigger.sql
+	mysql -u root --password= -D mysql <trigger.sql
 
 insert:
-	mysql -u root --password= -D mysql <src/insert.sql
+	mysql -u root --password= -D mysql <insert.sql
 
 
 %.o: %.c $(DEPS)
