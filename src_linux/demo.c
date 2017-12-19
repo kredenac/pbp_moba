@@ -27,13 +27,12 @@ int main (int argc, char **argv)
     /* Incijalizuje se promenljiva koja ce prowstavljati konekciju. */
     connection = mysql_init (NULL);
     if (connection == NULL){
-      printf("connection JE NULL >:(");
-      error_fatal ("Greska u konekciji. %s\n", mysql_error (connection));
+      error_fatal ("Connection error. %s\n", mysql_error (connection));
     }
     /* Pokusava se sa konektovanjem na bazu. */
-    if (mysql_real_connect(connection, "127.0.0.1", "root", "1234", "moba",
-        0, NULL,0) == NULL){
-        error_fatal ("Greska u konekciji. %s\n", mysql_error (connection));
+    if (mysql_real_connect(connection, "localhost", "root", "", "moba",
+        0, NULL, 0) == NULL){
+        error_fatal ("Connection error. %s\n", mysql_error (connection));
     }
     srand(time(NULL));
     int option;
